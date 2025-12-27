@@ -36,8 +36,22 @@ void AAuraEffectActor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedCompo
 		{
 			// TODO: using a const cast is already an indication that this is a HACK and should be fixed properly later. Use gameplay effects to modify attributes.
 			UAuraAttributeSet* mutableAttributeSet = const_cast<UAuraAttributeSet*>(attributeSet);
-			float currentHealth = attributeSet->GetmyHealth();
-			mutableAttributeSet->SetmyHealth(currentHealth + 15.f);
+			constexpr const float changeAmount = 25.f;
+			switch(EffectType)
+			{
+			case EEffectType::HealthBoost:
+				mutableAttributeSet->SetmyHealth(attributeSet->GetmyHealth() + changeAmount);
+				break;
+			case EEffectType::ManaBoost:
+				mutableAttributeSet->SetmyMana(attributeSet->GetmyMana() + changeAmount);
+				break;
+			case EEffectType::HealthBuff:
+				mutableAttributeSet->SetmyHealth(attributeSet->GetmyHealth() - changeAmount);
+				break;
+			case EEffectType::ManaBuff:
+				mutableAttributeSet->SetmyMana(attributeSet->GetmyMana() - changeAmount);
+				break;
+			}
 			Destroy();
 		}
 	}
