@@ -33,5 +33,5 @@ private:
 
 	void Move(const FInputActionValue& anInputActionValue);
 	void CursorTrace();
-	IActorHoverInterface* myCursorActor;
+	TScriptInterface<IActorHoverInterface> myCursorActor;
 };

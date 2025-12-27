@@ -1,0 +1,52 @@
+# EditorConfig for Aura (Unreal Engine 5)
+# Top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+max_line_length = 120
+
+# C++ files
+[*.{h,hpp,hxx,inl,c,cc,cpp,cxx}]
+# Naming conventions aligned with Unreal Engine guidelines
+# - Types (classes/structs/enums) use PascalCase with UE prefixes (U, A, S, F, E, I, T)
+# - Methods/functions: PascalCase
+# - Local variables: PascalCase (preferred in UE samples) or camelCase if explicitly desired; we standardize to PascalCase for locals
+# - Member fields: PascalCase; private fields may use trailing underscore if desired, but we avoid underscores to match UE style
+# - UPROPERTY/UPARAM names: PascalCase
+# - Constants/macros: ALL_CAPS with underscores
+
+# Formatting
+curly_bracket_next_line = true
+indent_brace_style = Allman
+
+# Spaces
+csharp_new_line_before_open_brace = all
+cpp_space_around_operators = true
+cpp_space_after_keywords = true
+
+# Include ordering hint (not enforced by EditorConfig, documented in CONTRIBUTING)
+
+# Visual Studio hints
+dotnet_sort_system_directives_first = true
+
+# Unreal-specific preferences (comments for humans; tools may ignore)
+# - Use UE_LOG categories with PascalCase
+# - Prefer FText over FString for user-facing text; use TEXT("...") macros
+# - Use const correctness and references where appropriate
+
+# JSON, INI, Build files
+[*.{ini,uproject,uplugin,json,Build.cs}]
+indent_style = space
+indent_size = 4
+
+# Markdown
+[*.md]
+indent_size = 2
+trim_trailing_whitespace = false

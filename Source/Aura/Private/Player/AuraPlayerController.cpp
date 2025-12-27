@@ -23,8 +23,10 @@ void AAuraPlayerController::BeginPlay()
     check(myAuraContext);
 
     UEnhancedInputLocalPlayerSubsystem* subSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-    check(subSystem);
-    subSystem->AddMappingContext(myAuraContext, 0);
+    if(subSystem)
+    {
+        subSystem->AddMappingContext(myAuraContext, 0);
+	}
 
     bShowMouseCursor = true;
     DefaultMouseCursor = EMouseCursor::Default;
@@ -67,8 +69,8 @@ void AAuraPlayerController::CursorTrace()
     if(!result.bBlockingHit)
         return;
     
-    IActorHoverInterface* lastActor = myCursorActor;
-    myCursorActor = Cast<IActorHoverInterface>(result.GetActor());
+    TScriptInterface<IActorHoverInterface> lastActor = myCursorActor;
+    myCursorActor = result.GetActor();
     if (!lastActor && myCursorActor)
     {
         myCursorActor->HighlightActor();
