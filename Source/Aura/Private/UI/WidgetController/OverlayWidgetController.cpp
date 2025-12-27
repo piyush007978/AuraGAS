@@ -7,24 +7,24 @@
 void UOverlayWidgetController::BroadcastInitialValues()
 {
 	Super::BroadcastInitialValues();
-	const UAuraAttributeSet* auraAttributeSet = CastChecked<const UAuraAttributeSet>(myAttributeSet);
-	OnHealthChanged.Broadcast(auraAttributeSet->GetmyHealth());
-	OnMaxHealthChanged.Broadcast(auraAttributeSet->GetmyMaxHealth());
-	OnManaChanged.Broadcast(auraAttributeSet->GetmyMana());
-	OnMaxManaChanged.Broadcast(auraAttributeSet->GetmyMaxMana());
+	const UAuraAttributeSet* auraAttributeSet = CastChecked<const UAuraAttributeSet>(AttributeSet);
+	OnHealthChanged.Broadcast(auraAttributeSet->GetHealth());
+	OnMaxHealthChanged.Broadcast(auraAttributeSet->GetMaxHealth());
+	OnManaChanged.Broadcast(auraAttributeSet->GetMana());
+	OnMaxManaChanged.Broadcast(auraAttributeSet->GetMaxMana());
 }
 
 void UOverlayWidgetController::BindCallbacksToDependencies()
 {
-	const UAuraAttributeSet* auraAttributeSet = CastChecked<const UAuraAttributeSet>(myAttributeSet);
-	myAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
-	auraAttributeSet->GetmyHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
-	myAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
-	auraAttributeSet->GetmyMaxHealthAttribute()).AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
-	myAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
-	auraAttributeSet->GetmyManaAttribute()).AddUObject(this, &UOverlayWidgetController::ManaChanged);
-	myAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
-	auraAttributeSet->GetmyMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
+	const UAuraAttributeSet* auraAttributeSet = CastChecked<const UAuraAttributeSet>(AttributeSet);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+	auraAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+	auraAttributeSet->GetMaxHealthAttribute()).AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+	auraAttributeSet->GetManaAttribute()).AddUObject(this, &UOverlayWidgetController::ManaChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+	auraAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
 }
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const

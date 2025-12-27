@@ -27,11 +27,11 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputMappingContext> myAuraContext;
+	TObjectPtr<UInputMappingContext> AuraContext;
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputAction> myInputAction;
+	TObjectPtr<UInputAction> InputAction;
 
 	void Move(const FInputActionValue& anInputActionValue);
 	void CursorTrace();
-	TScriptInterface<IActorHoverInterface> myCursorActor;
+	TScriptInterface<IActorHoverInterface> CursorActor;
 };

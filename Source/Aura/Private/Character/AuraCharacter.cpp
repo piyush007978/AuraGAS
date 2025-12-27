@@ -38,13 +38,13 @@ void AAuraCharacter::InitAbilityActorInfo()
     AAuraPlayerState* auraPlayerState = GetPlayerState<AAuraPlayerState>();
     check(auraPlayerState);
     auraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(auraPlayerState, this);
-    myAbilitySystemComponent = auraPlayerState->GetAbilitySystemComponent();
-    myAttributeSet = auraPlayerState->GetAttributeSet();
+    AbilitySystemComponent = auraPlayerState->GetAbilitySystemComponent();
+    AttributeSet = auraPlayerState->GetAttributeSet();
     if(AAuraPlayerController* auraPlayerController = Cast<AAuraPlayerController>(GetController()))
     {
         if(AAuraHUD* auraHUD = Cast<AAuraHUD>(auraPlayerController->GetHUD()))
         {
-			auraHUD->InitOverlay(auraPlayerController, auraPlayerState, myAbilitySystemComponent, myAttributeSet);
+			auraHUD->InitOverlay(auraPlayerController, auraPlayerState, AbilitySystemComponent, AttributeSet);
         }
     }
 }

@@ -5,10 +5,10 @@
 
 void UAuraWidgetController::SetWidgetControllerParams(const FWidgetControllerParams& Params)
 {
-	myPlayerState = Params.PlayerState;
-	myPlayerController = Params.PlayerController;
-	myAbilitySystemComponent = Params.AbilitySystemComponent;
-	myAttributeSet = Params.AttributeSet;
+	PlayerState = Params.PlayerState;
+	PlayerController = Params.PlayerController;
+	AbilitySystemComponent = Params.AbilitySystemComponent;
+	AttributeSet = Params.AttributeSet;
 }
 
 void UAuraWidgetController::BroadcastInitialValues()

@@ -5,7 +5,9 @@
 
 AAuraEffectActor::AAuraEffectActor()
 {
+ 	
 	PrimaryActorTick.bCanEverTick = false;
+
 }
 
 void AAuraEffectActor::BeginPlay()

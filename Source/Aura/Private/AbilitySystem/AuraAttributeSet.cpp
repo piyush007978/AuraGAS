@@ -7,37 +7,37 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-    InitmyHealth(50.f);
-    InitmyMaxHealth(100.f);
-    InitmyMana(50.f);
-    InitmyMaxMana(50.f);
+    InitHealth(100.f);
+    InitMaxHealth(100.f);
+    InitMana(50.f);
+    InitMaxMana(50.f);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, myHealth, COND_None, REPNOTIFY_Always);
-    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, myMaxHealth, COND_None, REPNOTIFY_Always);
-    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, myMana, COND_None, REPNOTIFY_Always);
-    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, myMaxMana, COND_None, REPNOTIFY_Always);
+    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
+    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
+    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
+    DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
 }
 
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& anOldValue) const
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, myHealth, anOldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Health, anOldValue);
 }
 
 void UAuraAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& anOldValue) const
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, myMaxHealth, anOldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxHealth, anOldValue);
 }
 
 void UAuraAttributeSet::OnRep_Mana(const FGameplayAttributeData& anOldValue) const
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, myMana, anOldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Mana, anOldValue);
 }
 
 void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& anOldValue) const
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, myMaxMana, anOldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxMana, anOldValue);
 }

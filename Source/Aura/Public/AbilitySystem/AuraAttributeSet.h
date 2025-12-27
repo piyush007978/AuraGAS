@@ -22,27 +22,27 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 	GENERATED_BODY()
 public:
 	UAuraAttributeSet();
-	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty> & OutLifetimeProps) const override;
+	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
-	FGameplayAttributeData myHealth;
+	FGameplayAttributeData Health;
 
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, myHealth);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Health);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Vital Attributes")
-	FGameplayAttributeData myMaxHealth;
+	FGameplayAttributeData MaxHealth;
 	
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, myMaxHealth);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxHealth);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Mana, Category = "Vital Attributes")
-	FGameplayAttributeData myMana;
+	FGameplayAttributeData Mana;
 
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, myMana);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Mana);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "Vital Attributes")
-	FGameplayAttributeData myMaxMana;
+	FGameplayAttributeData MaxMana;
 
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, myMaxMana);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana);
 
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& anOldValue) const;

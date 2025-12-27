@@ -7,14 +7,14 @@
 
 UAbilitySystemComponent* AAuraPlayerState::GetAbilitySystemComponent() const
 {
-    return myAbilitySystemComponent;
+    return AbilitySystemComponent;
 }
 
 AAuraPlayerState::AAuraPlayerState()
 {
     NetUpdateFrequency = 100.f;
-    myAbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
-    myAbilitySystemComponent->SetIsReplicated(true);
-    myAbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
-    myAttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
+    AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
+    AbilitySystemComponent->SetIsReplicated(true);
+    AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+    AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 }

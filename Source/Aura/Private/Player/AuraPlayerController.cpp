@@ -20,12 +20,12 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 void AAuraPlayerController::BeginPlay()
 {
     Super::BeginPlay();
-    check(myAuraContext);
+    check(AuraContext);
 
     UEnhancedInputLocalPlayerSubsystem* subSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
     if(subSystem)
     {
-        subSystem->AddMappingContext(myAuraContext, 0);
+        subSystem->AddMappingContext(AuraContext, 0);
 	}
 
     bShowMouseCursor = true;
@@ -43,7 +43,7 @@ void AAuraPlayerController::SetupInputComponent()
     Super::SetupInputComponent();
     
     UEnhancedInputComponent* enhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
-    enhancedInputComponent->BindAction(myInputAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+    enhancedInputComponent->BindAction(InputAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& anInputActionValue)
@@ -69,23 +69,23 @@ void AAuraPlayerController::CursorTrace()
     if(!result.bBlockingHit)
         return;
     
-    TScriptInterface<IActorHoverInterface> lastActor = myCursorActor;
-    myCursorActor = result.GetActor();
-    if (!lastActor && myCursorActor)
+    TScriptInterface<IActorHoverInterface> LastActor = CursorActor;
+    CursorActor = result.GetActor();
+    if (!LastActor && CursorActor)
     {
-        myCursorActor->HighlightActor();
+        CursorActor->HighlightActor();
     }
     
-    else if(lastActor)
+    else if(LastActor)
     {
-        if (!myCursorActor)
+        if (!CursorActor)
         {
-            lastActor->UnHighlightActor();
+            LastActor->UnHighlightActor();
         }
-        else if (myCursorActor != lastActor)
+        else if (CursorActor != LastActor)
         {
-            myCursorActor->HighlightActor();
-            lastActor->UnHighlightActor();
+            CursorActor->HighlightActor();
+            LastActor->UnHighlightActor();
         }
     }
 }

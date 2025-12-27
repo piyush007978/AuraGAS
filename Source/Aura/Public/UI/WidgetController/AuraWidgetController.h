@@ -50,12 +50,12 @@ public:
 	virtual void BindCallbacksToDependencies();
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<APlayerState> myPlayerState;
+	TObjectPtr<APlayerState> PlayerState;
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<APlayerController> myPlayerController;
+	TObjectPtr<APlayerController> PlayerController;
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<class UAbilitySystemComponent> myAbilitySystemComponent;
+	TObjectPtr<class UAbilitySystemComponent> AbilitySystemComponent;
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<class UAttributeSet> myAttributeSet;
+	TObjectPtr<class UAttributeSet> AttributeSet;
 	
 };
