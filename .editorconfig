@@ -5,9 +5,9 @@ root = true
 # All files
 [*]
 charset = utf-8
-end_of_line = lf
+end_of_line = crlf
 insert_final_newline = true
-indent_style = space
+indent_style = tabs
 indent_size = 4
 trim_trailing_whitespace = true
 max_line_length = 120
@@ -23,9 +23,10 @@ max_line_length = 120
 # - Constants/macros: ALL_CAPS with underscores
 
 # Formatting
+clang_tidy = true
 curly_bracket_next_line = true
 indent_brace_style = Allman
-
+clang_tidy.readability-identifier-naming.LocalVariableCase = PascalCase
 # Spaces
 csharp_new_line_before_open_brace = all
 cpp_space_around_operators = true
@@ -43,7 +44,7 @@ dotnet_sort_system_directives_first = true
 
 # JSON, INI, Build files
 [*.{ini,uproject,uplugin,json,Build.cs}]
-indent_style = space
+indent_style = tabs
 indent_size = 4
 
 # Markdown
