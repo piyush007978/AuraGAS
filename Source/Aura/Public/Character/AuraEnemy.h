@@ -16,8 +16,14 @@ class AURA_API AAuraEnemy : public AAuraCharacterBase, public IActorHoverInterfa
 	GENERATED_BODY()
 public:
 	AAuraEnemy();
-	virtual void HighlightActor() override;
-	virtual void UnHighlightActor() override;
+	void HighlightActor() override;
+	void UnHighlightActor() override;
+	void PossessedBy(AController* NewController) override;
 protected:
 	virtual void BeginPlay() override;
+	void InitAbilityActorInfo() override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
+	TObjectPtr<class AAuraAIController> AuraAIController;
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+	TObjectPtr<class UBehaviorTree> BehaviorTree;
 };

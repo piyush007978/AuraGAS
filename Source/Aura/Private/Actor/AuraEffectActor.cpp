@@ -26,13 +26,18 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGam
 
 	FGameplayEffectContextHandle ContextHandle = TargetAbilityComponent->MakeEffectContext();
 	ContextHandle.AddSourceObject(this);
-	const FGameplayEffectSpecHandle SpecHandle = TargetAbilityComponent->MakeOutgoingSpec(EffectClass, 1.f, ContextHandle);
+	const FGameplayEffectSpecHandle SpecHandle = TargetAbilityComponent->MakeOutgoingSpec(EffectClass, ActorLevel, ContextHandle);
 	FActiveGameplayEffectHandle ActiveEffectHandle = TargetAbilityComponent->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 
 	const bool bIsInfinite = SpecHandle.Data.Get()->Def.Get()->DurationPolicy == EGameplayEffectDurationType::Infinite;
 	if (bIsInfinite && InfiniteEffectRemovalPolicy == EEffectRemovalPolicy::RemoveOnEndOverlap)
 	{
 		ActiveInfiniteEffectHandles.Add(ActiveEffectHandle, TargetAbilityComponent);
+	}
+
+	if (!bIsInfinite && bDestroyOnEffectRemoval)
+	{
+		Destroy();
 	}
 }
 

@@ -2,8 +2,8 @@
 
 
 #include "Character/AuraCharacterBase.h"
+#include "AbilitySystemComponent.h"
 
-// Sets default values
 AAuraCharacterBase::AAuraCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -18,10 +18,28 @@ UAbilitySystemComponent* AAuraCharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
-// Called when the game starts or when spawned
 void AAuraCharacterBase::BeginPlay()
 {
-	Super::BeginPlay();
-	
+	Super::BeginPlay();	
+}
+
+void AAuraCharacterBase::InitAbilityActorInfo()
+{
+}
+
+void AAuraCharacterBase::InitializeAttributesFromEffect(TSubclassOf<UGameplayEffect> EffectClass, float Level) const
+{
+	checkf(IsValid(AbilitySystemComponent), TEXT("AbilitySystemComponent is not valid"));
+	checkf(IsValid(EffectClass), TEXT("EffectClass is not valid"));
+	FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, GetAbilitySystemComponent()->MakeEffectContext());
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(
+		*SpecHandle.Data,
+		GetAbilitySystemComponent());
+}
+
+void AAuraCharacterBase::IntializeDefaultAttributes() const
+{
+	InitializeAttributesFromEffect(DefaultPrimaryAttributes);
+	InitializeAttributesFromEffect(DefaultSecondaryAttributes);
 }
 
