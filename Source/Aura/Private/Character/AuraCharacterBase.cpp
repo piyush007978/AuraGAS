@@ -3,6 +3,7 @@
 
 #include "Character/AuraCharacterBase.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraCharacterBase::AAuraCharacterBase()
 {
@@ -31,7 +32,10 @@ void AAuraCharacterBase::InitializeAttributesFromEffect(TSubclassOf<UGameplayEff
 {
 	checkf(IsValid(AbilitySystemComponent), TEXT("AbilitySystemComponent is not valid"));
 	checkf(IsValid(EffectClass), TEXT("EffectClass is not valid"));
-	FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, GetAbilitySystemComponent()->MakeEffectContext());
+	FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	ContextHandle.AddSourceObject(this);
+	FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, ContextHandle);
+	
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(
 		*SpecHandle.Data,
 		GetAbilitySystemComponent());
@@ -41,5 +45,15 @@ void AAuraCharacterBase::IntializeDefaultAttributes() const
 {
 	InitializeAttributesFromEffect(DefaultPrimaryAttributes);
 	InitializeAttributesFromEffect(DefaultSecondaryAttributes);
+	InitializeAttributesFromEffect(DefaultVitalAttributes);
+}
+
+void AAuraCharacterBase::AddStartupAbilities()
+{
+	if(!HasAuthority())
+		return;
+
+	UAuraAbilitySystemComponent* AuraAbilityComponent = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponent);
+	AuraAbilityComponent->AddCharacterAbilities(StartupAbilities);
 }
 

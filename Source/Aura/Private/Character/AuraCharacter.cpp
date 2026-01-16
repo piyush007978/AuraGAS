@@ -25,12 +25,20 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	InitAbilityActorInfo();
+	AddStartupAbilities();
 }
 
 void AAuraCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 	InitAbilityActorInfo();
+}
+
+int32 AAuraCharacter::GetCharacterLevel() const
+{
+	AAuraPlayerState* auraPlayerState = GetPlayerState<AAuraPlayerState>();
+	checkf(auraPlayerState, TEXT("AAuraCharacter::GetLevel() called on %s with no valid PlayerState"), *GetName());
+	return auraPlayerState->GetPlayerLevel();
 }
 
 void AAuraCharacter::InitAbilityActorInfo()

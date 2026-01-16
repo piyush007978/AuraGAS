@@ -19,6 +19,7 @@ public:
 	void HighlightActor() override;
 	void UnHighlightActor() override;
 	void PossessedBy(AController* NewController) override;
+	int32 GetCharacterLevel() const override;
 protected:
 	virtual void BeginPlay() override;
 	void InitAbilityActorInfo() override;
@@ -26,4 +27,6 @@ protected:
 	TObjectPtr<class AAuraAIController> AuraAIController;
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	TObjectPtr<class UBehaviorTree> BehaviorTree;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy Class Defaults")
+	int32 Level = 1;
 };
